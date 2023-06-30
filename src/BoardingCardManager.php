@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Hugol\UseCase;
 
 use Exception;
 
