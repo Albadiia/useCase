@@ -7,7 +7,13 @@ use Exception;
 class BoardingCardManager
 {
     private $boardingCards;
-    
+        
+    /**
+     * __construct
+     *
+     * @param  string $file
+     * @return void
+     */
     public function __construct(string $file)
     {
         $fileExploded = explode('.', $file);
@@ -24,20 +30,25 @@ class BoardingCardManager
                 break;
         }
     }
-
+    
+    /**
+     * sortBoardingCard
+     *
+     * @return void
+     */
     public function sortBoardingCard()
     {
         $sortedBoardingCards = [];
         $cardMap = [];
 
-        // Construire une carte de correspondance pour les destinations
+        // Build a correspondence map
         foreach ($this->getBoardingCards() as $card) {
             $cardMap[$card['from']] = $card;
             $cardMap['from'][] = $card['from'];
             $cardMap['to'][] = $card['to'];
         }
 
-        // Trouver le point de départ
+        // Find the starting point
         $start = null;
         foreach ($cardMap['from'] as $from) {
             if (in_array($from, $cardMap['to']) === false) {
@@ -46,17 +57,21 @@ class BoardingCardManager
             }
         }
 
-        // Tri des cartes d'embarquement
+        // Sort boarding cards
         $sortedBoardingCards[] = $start;
         while (isset($cardMap[end($sortedBoardingCards)['to']])) {
             $sortedBoardingCards[] = $cardMap[end($sortedBoardingCards)['to']];
         }
 
-        // Afficher la liste triée
-        foreach ($sortedBoardingCards as $key => $boardingCard) {
+        // display result
+        foreach ($sortedBoardingCards as $boardingCard) {
             switch ($boardingCard['type']) {
                 case 'plane':
-                    echo 'From ' . $boardingCard['from'] . ', take flight ' . $boardingCard['reference'] . ' to ' . $boardingCard['to'] . '. Gate ' . $boardingCard['gate'] . ', seat ' . $boardingCard['seat'] . '.';
+                    echo 'From ' . $boardingCard['from'] . 
+                    ', take flight ' . $boardingCard['reference'] . 
+                    ' to ' . $boardingCard['to'] . 
+                    '. Gate ' . $boardingCard['gate'] . 
+                    ', seat ' . $boardingCard['seat'] . '.';
                     if ($boardingCard['transfer']) {
                         echo ' Baggage will we automatically transferred from your last leg.';
                     }else{
@@ -64,10 +79,15 @@ class BoardingCardManager
                     }
                     break;
                 case 'train':
-                    echo 'Take train ' . $boardingCard['reference'] . ' from ' . $boardingCard['from'] . ' to ' . $boardingCard['to'] . '. Sit in seat ' . $boardingCard['seat'] . '.';
+                    echo 'Take train ' . $boardingCard['reference'] . 
+                    ' from ' . $boardingCard['from'] . 
+                    ' to ' . $boardingCard['to'] . '. Sit in seat ' . $boardingCard['seat'] . '.';
                     break;
                 case 'bus':
-                    echo 'Take the bus ' . $boardingCard['reference'] . ' from ' . $boardingCard['from'] . ' to ' . $boardingCard['to'] . '. ' . ($boardingCard['seat'] !== '' ? 'Sit in seat ' . $boardingCard['seat'] . '.' : 'No seat assignment.');
+                    echo 'Take the bus ' . $boardingCard['reference'] . 
+                    ' from ' . $boardingCard['from'] . 
+                    ' to ' . $boardingCard['to'] . '. ' 
+                    . ($boardingCard['seat'] !== '' ? 'Sit in seat ' . $boardingCard['seat'] . '.' : 'No seat assignment.');
                     break;
             }
             echo '<br>';

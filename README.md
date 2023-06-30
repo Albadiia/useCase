@@ -9,7 +9,7 @@ composer require hugol/use-case:dev-main
 ```
 
 # setup
-create an index.php in wich you require `vendor/autoload.php`
+require `vendor/autoload.php` in your index.php
 then use `Hugol\UseCase\BoardingCardManager`
 
 ```php
