@@ -28,13 +28,13 @@ return [
 
 # data format
 
-| name | type |
-|---|---|
-| `from` | string |
-| `to` | string |
-| `seat` | string |
-| `type` | string |
-| `reference` | string |
-| `dock` | string |
-| `gate` | string |
-| `transfer` | boolean |
+| name | type | description |
+|---|---| --- |
+| `from` | string | start point |
+| `to` | string | end point |
+| `seat` | string | seat number |
+| `type` | string | type of vehicule (bus, train, plane) |
+| `reference` | string | reference of the boarding card |
+| `dock` | string | *only trains* dock from wich the train leaves |
+| `gate` | string | *only plane* gate through which we board the plane |
+| `transfer` | boolean | *only plane* are the baggages automaticaly transferred from last travel |
