@@ -1,0 +1,19 @@
+{
+    "name": "hugol/use-case",
+    "description": "use case for Sprint Technology",
+    "type": "library",
+    "require-dev": {
+        "php": ">=8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hugo Lemenorel",
+            "email": "hugo.lemenorel@gmail.com"
+        }
+    ]
+}
