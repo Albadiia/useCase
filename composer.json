@@ -5,6 +5,7 @@
     "require-dev": {
         "php": ">=8.2"
     },
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "App\\": "src/"
@@ -12,9 +13,9 @@
     },
     "authors": [
         {
-            "name": "Hugo Lemenorel",
+            "name": "Albadiia",
             "email": "hugo.lemenorel@gmail.com"
         }
     ],
-    "license": "MIT"
+    "minimum-stability": "stable"
 }
